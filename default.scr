@@ -1,0 +1,49 @@
+[main]
+lbl_start:Welcome to the Kotani Finance Bot:continue
+	label_mxke:{"name":"quickreply","type":"quick_reply","alias":"Select Option Below?","msgid":"505a73db-b86d-e4a1-da47-20c7ce610b92","content":{"type":"text","text":"Select Option Below?"},"options":[{"type":"text","title":"Send Kes from Jenga","iconurl":"","id":"61cae4e6-a687-8901-bfd3-698a2840c52d","isDuplicate":false,"name":"user"},{"type":"text","title":"Query Jenga Balance","iconurl":"","id":"f925afcf-dee0-ed75-b4c7-760f8a88912b","isDuplicate":false,"name":"user"},{"type":"text","title":"CUSD wallet Balance","iconurl":"","id":"9caa66df-4ff4-932f-f0ae-35f1ea7d40fb","isDuplicate":false,"name":"user"},{"type":"text","title":"Convert CUSD to CELO","iconurl":"","id":"681e989f-6595-7cdf-eb37-36faf3eaf701","isDuplicate":false,"name":"user"},{"type":"text","title":"Send CELO to Binance","iconurl":"","id":"f73985e9-2c7e-4c00-8298-39b0ed8c6aec","isDuplicate":false,"name":"user"},{"type":"text","title":"Send CUSD","iconurl":"","id":"6474257e-d830-4ebb-2cdc-a3cf8820a0b4","isDuplicate":false,"name":"user"}]}
+		btn_jenga:Send Kes from Jenga
+			label_vqpt:Enter Kes Amount (e.g: 2000)
+				sendAmount: {{label_bmuc}}
+					label_bmuc:Enter recipient phone number (e.g: 254700123456)
+						recipient:{{phoneNumber}}
+							label_emui:{"name":"quickreply","type":"quick_reply","alias":"Sending Kes {{amount}} to {{phoneNumber}}","msgid":"eddb6803-c4d9-2db6-33ed-564909f4ac52","content":{"type":"text","text":"Sending Kes {{amount}} to {{phoneNumber}}"},"options":[{"type":"text","title":"Confirm","iconurl":"","id":"176e7e75-75e2-c7c7-d934-e3098e5fab8e","isDuplicate":false,"name":"user"},{"type":"text","title":"Cancel","iconurl":"","id":"b51371f9-0842-2301-d9ef-a6557512ca3c","isDuplicate":false,"name":"user"}]}
+								label_jbno:Confirm
+									((delay 3000))
+										jenga_resp:Kes {{amount}} sent to {{phoneNumber}} successfully.\nReferenceCode: {{referenceCode}}
+								label_clcu:Cancel:goto lbl_start
+		label_nfqo:Query Jenga Balance
+			label_stzi:Current Jenga Balance is Kes...
+		label_fjpm:CUSD wallet Balance
+			label_jiwl:Wallet Address: {{address}}\nWallet Balance: CELO: {{celo_balance}}\nCUSD: {{cusd_balance}}
+		label_yyfd:Convert CUSD to CELO
+			label_ibey:Enter CUSD amount to convert (e.g. 200)
+				label_msar:{{cusd_amount}}
+					label_hmse:{"name":"quickreply","type":"quick_reply","alias":"Converting {{cusd_amount}} to CELO","msgid":"eabfba0e-3373-3baf-30f2-893ec65b9d44","content":{"type":"text","text":"Converting {{cusd_amount}} to CELO"},"options":[{"type":"text","title":"Confirm","iconurl":"","id":"4e81af56-aa51-8634-ba01-6efc07db5857","isDuplicate":false,"name":"user"},{"type":"text","title":"Cancel","iconurl":"","id":"f5dd44d3-c731-c61b-87d2-7e029c2cad91","isDuplicate":false,"name":"user"}]}
+						label_pjci:Confirm
+							((delay 3000))
+								label_vpyt:You've successfully purchase: {{celo_amount}} CELO\nTxhash: {{txhash}}
+						label_nddg:Cancel:goto lbl_start
+		label_kvfx:Send CELO to Binance
+			label_pavo:Enter CELO amount to send
+				label_mxsb:{{celo_amount}}
+					((delay 3000))
+						label_kdrv:{"name":"quickreply","type":"quick_reply","alias":"Sending {{celo_amount}} to Binance account {{celo_address}}","msgid":"2b43a95a-1cd7-f64d-84f8-27c399a498df","content":{"type":"text","text":"Sending {{celo_amount}} to Binance account {{celo_address}}"},"options":[{"type":"text","title":"Confirm","iconurl":"","id":"459271ab-bb6e-c146-b9ef-2f4726167ddc","isDuplicate":false,"name":"user"},{"type":"text","title":"Cancel","iconurl":"","id":"a7597cd0-0bed-a950-510c-6b3bf4859cb9","isDuplicate":false,"name":"user"}]}
+							label_okie:Confirm
+								((delay 3000))
+									label_wcvg:{{celo_amount}} CELO sent to Binance address {{celo_address}}\nTransaction hash: {{txhash}}
+							label_nwns:Cancel:goto lbl_start
+		label_olbs:Send CUSD
+			label_dwuy:Enter recipient address
+				label_rzwr:{{recipient_address}}
+					label_gadr:Enter CUSD amount
+						label_noxz:{{cusd_amount}}
+							label_wqsh:{"name":"quickreply","type":"quick_reply","alias":"Sending {{cusd_amount}} CUSD to {{recipient_address}}","msgid":"180bc424-d06e-093c-4cb4-3d82cebb73a2","content":{"type":"text","text":"Sending {{cusd_amount}} CUSD to {{recipient_address}}"},"options":[{"type":"text","title":"Confirm","iconurl":"","id":"7d7969dc-f75b-1616-4738-addbb3759940","isDuplicate":false,"name":"user"},{"type":"text","title":"Cancel","iconurl":"","id":"88da63ff-dd9f-ee3e-0712-ba9aaf61dafa","isDuplicate":false,"name":"user"}]}
+								label_mlnk:Confirm
+									((delay 3000))
+										label_ckrh:Transaction successful:\n{{cusd_amount}} CUSD sent to {{recipient_address}}\nTransaction hash: {{txhash}}
+								label_mfdl:Cancel:goto lbl_start
+[common]
+label_pstp:Menu|hello
+	label_lmob::call default.main
+[send_kes_to_user]
+label_dgcl:This is the first message of your flow. You can edit this message or select another message type.
